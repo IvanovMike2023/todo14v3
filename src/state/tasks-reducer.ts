@@ -141,7 +141,10 @@ export const changeTaskTitleAC = (taskId: string, title: string, todolistId: str
 }
 export const setTaskAC = (todilistId: string, tasks: TaskType[]) => ({type: 'SET-TASKS', tasks, todilistId} as const)
 export const setThunkCreator = (todolistId: string) => (dispatch: Dispatch) => {
+
     todolistsAPI.getTasks(todolistId).then((res) => {
+     console.log(todolistId)
+        // console.log(res.data.items)
         dispatch(setTaskAC(todolistId, res.data.items))
     })
 }

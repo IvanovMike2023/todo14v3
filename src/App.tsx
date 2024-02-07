@@ -14,10 +14,10 @@ import {Menu} from '@mui/icons-material';
 import {
     addTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC,
+    changeTodolistTitleAC, createTodolistThunkCreator,
     FilterValuesType,
-    removeTodolistAC, setTodolistThunkCreator,
-    TodolistDomainType
+    removeTodolistAC, removeTodolistThunkCreator, setTodolistThunkCreator,
+    TodolistDomainType, updateTodolistThunkCreator
 } from './state/todolists-reducer'
 import {
     addTaskAC, addTaskThunkCreator,
@@ -46,11 +46,11 @@ function App() {
         dispatch(setTodolistThunkCreator())
     }, [])
     const removeTask = useCallback(function (id: string, todolistId: string) {
-        dispatch(deleteThunkCreator(todolistId,id))
+        dispatch(deleteThunkCreator(todolistId, id))
     }, []);
 
     const addTask = useCallback(function (title: string, todolistId: string) {
-        dispatch(addTaskThunkCreator(todolistId,title));
+        dispatch(addTaskThunkCreator(todolistId, title));
     }, []);
 
     const changeStatus = useCallback(function (id: string, status: TaskStatuses, todolistId: string) {
@@ -68,19 +68,17 @@ function App() {
     }, []);
 
     const removeTodolist = useCallback(function (id: string) {
-        const action = removeTodolistAC(id);
-        dispatch(action);
+
+        dispatch(removeTodolistThunkCreator(id));
     }, []);
 
     const changeTodolistTitle = useCallback(function (id: string, title: string) {
-        const action = changeTodolistTitleAC(id, title);
-        dispatch(action);
+        dispatch(updateTodolistThunkCreator(id,title));
     }, []);
 
-    const addTodolist = useCallback((title: string) => {
-        const action = addTodolistAC(title);
-        dispatch(action);
-    }, [dispatch]);
+    const addTodolist = useCallback(function(title: string)  {
+        dispatch(createTodolistThunkCreator(title));
+    }, []);
 
     return (
         <div className="App">
