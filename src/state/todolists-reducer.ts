@@ -76,7 +76,6 @@ export const todolistsReducer = (state: Array<TodolistDomainType> = initialState
             return state;
     }
 }
-
 export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType => {
     return {type: 'REMOVE-TODOLIST', id: todolistId}
 }
@@ -97,18 +96,18 @@ export const setTodolistThunkCreator = () => (dispatch: Dispatch) => {
         dispatch(setTodolistAC(res.data))
     })
 }
-export const removeTodolistThunkCreator = (todolistId: string) => (dispatch:Dispatch) => {
-    todolistsAPI.deleteTodolist(todolistId).then(res=>{
+export const removeTodolistThunkCreator = (todolistId: string) => (dispatch: Dispatch) => {
+    todolistsAPI.deleteTodolist(todolistId).then(res => {
         dispatch(removeTodolistAC(todolistId))
     })
 }
-export const updateTodolistThunkCreator = (id: string, title: string) => (dispatch:Dispatch) => {
-    todolistsAPI.updateTodolist(id,title).then(res=>{
-        dispatch(changeTodolistTitleAC(id,title))
+export const updateTodolistThunkCreator = (id: string, title: string) => (dispatch: Dispatch) => {
+    todolistsAPI.updateTodolist(id, title).then(res => {
+        dispatch(changeTodolistTitleAC(id, title))
     })
 }
-export const createTodolistThunkCreator=(title: string)=>(dispatch:Dispatch)=>{
-    todolistsAPI.createTodolist(title).then(res=>{
+export const createTodolistThunkCreator = (title: string) => (dispatch: Dispatch) => {
+    todolistsAPI.createTodolist(title).then(res => {
         //console.log(res.data.data.item)
         dispatch(addTodolistAC(title))
         //dispatch(setTaskAC(res.data.data.item.id, res.data.data.item))

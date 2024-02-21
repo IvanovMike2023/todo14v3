@@ -73,10 +73,10 @@ function App() {
     }, []);
 
     const changeTodolistTitle = useCallback(function (id: string, title: string) {
-        dispatch(updateTodolistThunkCreator(id,title));
+        dispatch(updateTodolistThunkCreator(id, title));
     }, []);
 
-    const addTodolist = useCallback(function(title: string)  {
+    const addTodolist = useCallback(function (title: string) {
         dispatch(createTodolistThunkCreator(title));
     }, []);
 
